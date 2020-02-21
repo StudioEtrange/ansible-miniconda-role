@@ -1,10 +1,5 @@
 # uchida.miniconda
 
-[![Ansible Role](https://img.shields.io/ansible/role/6156.svg?maxAge=2592000)](https://galaxy.ansible.com/detail#/role/6156)
-![Version](https://img.shields.io/github/tag/uchida/ansible-miniconda-role.svg)
-[![License](https://img.shields.io/github/license/uchida/ansible-miniconda-role.svg?maxAge=2592000)](https://tldrlegal.com/license/creative-commons-cc0-1.0-universal)
-[![Travis](https://img.shields.io/travis/uchida/ansible-miniconda-role.svg)](https://travis-ci.org/uchida/ansible-miniconda-role)
-
 ansible role to install miniconda, Python-agnostic binary package manager.
 
 ## Role Variables
@@ -20,6 +15,7 @@ miniconda_prefix: "{{ ansible_env.HOME }}/miniconda{{ miniconda_python if minico
 miniconda_manage_dependencies: True
 miniconda_update_conda: False
 miniconda_env: ""
+`miniconda_set_system_path: False
 ```
 
 `miniconda_python` is a variable to specify python version miniconda based on.
@@ -50,6 +46,9 @@ default: `"-q"`, quiet mode (is recommended to ensure the create works)
 `miniconda_env_update_opts` is a variable to specify extra options for the `conda env update` task
 default: `""`, no additional opts
 useful to set '--prune' (remove installed packages not defined in environment)
+
+`miniconda_set_system_path` is a variable to specify wheather to add iniconda bin folder system path.
+default: `False`
 
 `miniconda_env` is a variable to specify conda environment to create.
 default: `""`, nothing will be created.
@@ -82,16 +81,14 @@ If you run this role with `gather_facts: no`, manually setting the following var
 ```yaml
 - hosts: servers
   roles:
-    - role: uchida.miniconda
-      miniconda_python: 2
+    - role: miniconda
+      miniconda_python: 3
       miniconda_prefix: /opt/miniconda
       miniconda_env:
         name: scipy
         dependencies:
-          - python=2
-          - numpy=1.9
-          - scipy=0.14.0
-          - matplotlib=1.4.0
+          - python=3
+          - numpy
 ```
 
 

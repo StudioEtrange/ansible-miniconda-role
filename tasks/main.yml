@@ -38,6 +38,12 @@
   when: miniconda_update_conda
   changed_when: '"All requested packages already installed" in miniconda_update'
 
+- name: set default conda env as default for the system
+  copy:
+    dest: /etc/profile.d/custom-path.sh
+    content: 'PATH={{ miniconda_prefix }}/bin:$PATH'
+  when: miniconda_set_system_path
+ 
 - name: conda environment file /tmp/{{ miniconda_env.name }}-environment.yml is created
   copy:
     content="{{ miniconda_env | to_yaml(default_flow_style=False) }}"

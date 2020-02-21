@@ -8,7 +8,7 @@ Available role variables are listed below, along with default values:
 
 ```yaml
 miniconda_python: 3
-miniconda_version: "3.16.0"
+miniconda_version: "4.7.12.1"
 miniconda_installer: Miniconda{{ "3" if miniconda_python == 3 or miniconda_version not in miniconda_oldversions else "" }}-{{ miniconda_version }}-{{ miniconda_systems[ansible_system] }}-{{ miniconda_architecture[ansible_architecture] }}.sh
 miniconda_installer_checksum: ""
 miniconda_prefix: "{{ ansible_env.HOME }}/miniconda{{ miniconda_python if miniconda_python == 3 else '' }}"

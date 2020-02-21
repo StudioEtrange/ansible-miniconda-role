@@ -8,3 +8,4 @@ miniconda_env: ""
 miniconda_manage_dependencies: True
 miniconda_env_create_opts: '-q'
 miniconda_env_update_opts: ''
+miniconda_set_system_path: False
